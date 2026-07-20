@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-gold-muted: #C5A880;
+  --color-gold-deep: #B39252;
+  --color-earth-warm: #D4A373;
+  --color-forest-dark: #1B4332;
+  --color-mint-green: #76C893;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F9FBF7;
+  color: #1B4332;
+}
+
+/* Custom premium styling utilities to match Artistic Flair theme */
+.artistic-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(197, 168, 128, 0.25); /* Elegant gold tinted border */
+  border-radius: 32px;
+  box-shadow: 0 16px 48px -12px rgba(179, 146, 82, 0.06), 0 4px 12px -4px rgba(27, 67, 50, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.artistic-card:hover {
+  border-color: rgba(179, 146, 82, 0.45);
+  box-shadow: 0 20px 56px -10px rgba(179, 146, 82, 0.1), 0 6px 18px -4px rgba(27, 67, 50, 0.03);
+  transform: translateY(-2px);
+}
+
+.artistic-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: #1B4332;
+}
+
+/* Scrollbar styling for high-end look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(27, 67, 50, 0.15);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(27, 67, 50, 0.3);
+}
+
+/* Smooth fade-in utility */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
