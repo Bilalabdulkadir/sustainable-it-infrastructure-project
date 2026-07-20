@@ -1,0 +1,6 @@
+{
+  "name": "Green IT Hub",
+  "description": "An interactive Green IT infrastructure dashboard, carbon savings calculator, and AI optimization audit tool by Bilal Abdulkadir Muhammed.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
