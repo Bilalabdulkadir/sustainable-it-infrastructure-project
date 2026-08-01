@@ -1,0 +1,6 @@
+- name: 'Run Unit Tests'
+  shell: pwsh # For Linux, use bash
+  run: |
+    pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+    npm run test --if-present
+    popd
