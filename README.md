@@ -48,8 +48,37 @@ Quick links
 
 ## Deployment suggestions
 
-- Vercel / Netlify: These platforms typically use serverless functions — this project runs an Express server and is packaged as a Node server. For Vercel you can either adapt the app to serverless functions or deploy as a container on platforms that support containers.
+- Vercel / Netlify: These platforms typically use serverless functions — this project runs an Express server and is packaged as a Node server. For Vercel you can either adapt the app to serverless functions or deploy the bundled Node server using a container-based platform.
 - Docker / Cloud Run / ECS / App Engine: Recommended for running the bundled server. Build a Docker image that runs `node dist/server.cjs` and set `GEMINI_API_KEY` as a runtime environment variable.
+
+## Docker / Containerized deployment
+
+This repo includes a Dockerfile and docker-compose configuration for running the production bundle in a container.
+
+Build and run with Docker:
+```bash
+# Build the image (this runs the project's build step inside the image)
+docker build -t green-it-hub:latest .
+
+# Run (ensure GEMINI_API_KEY is set)
+docker run -p 3000:3000 -e GEMINI_API_KEY="$GEMINI_API_KEY" green-it-hub:latest
+```
+
+Or use docker-compose:
+```bash
+# Copy your GEMINI_API_KEY into a .env file or export it in your shell
+export GEMINI_API_KEY="your_gemini_api_key"
+
+# Build and start
+docker-compose up --build -d
+
+# Stop
+docker-compose down
+```
+
+Notes:
+- The Dockerfile builds the frontend and bundles the server using the existing `npm run build` script and then runs `node dist/server.cjs`.
+- Make sure to provide a valid GEMINI_API_KEY at runtime. Do NOT store secrets in the repository.
 
 ## Removing AI Studio reference
 

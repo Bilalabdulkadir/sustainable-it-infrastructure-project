@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    image: green-it-hub:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # Set GEMINI_API_KEY in your environment or via an env file:
+      # - GEMINI_API_KEY=${GEMINI_API_KEY}
+    restart: unless-stopped
