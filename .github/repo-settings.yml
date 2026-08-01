@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💡 Sustainability Ideas"
+    url: "https://github.com/your-org/your-repo/discussions"
+    about: "Share ideas or proposals for improving sustainable IT practices."
+
+defaults:
+  labels:
+    - sustainability
+  assignees:
+    - bilal-abdulkadir
