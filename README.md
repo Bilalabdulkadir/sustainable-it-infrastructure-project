@@ -1,56 +1,281 @@
 # Green IT Hub — Run & Deploy
 
-## Purpose
+A full-stack Vite + Express application for generating **Green IT** and **Sustainable Infrastructure** audits using **Google Gemini AI**.
 
-- Full‑stack Vite + Express app to generate Green IT / Sustainable Infrastructure audits.
-- Uses Gemini AI API for AI features (GEMINI_API_KEY required).
+---
 
-## Features
+## 🌱 Features
 
-- React + Vite frontend
-- Express backend bundled with esbuild for production
-- AI integration via @google/genai
-- Docker + docker-compose for containerized runs
+- ⚛️ React + Vite frontend
+- 🚀 Express.js backend
+- 🤖 Google Gemini AI integration
+- 📊 Green IT sustainability assessments
+- 🐳 Docker & Docker Compose support
+- ☁️ Cloud Run deployment ready
+- 🔄 GitHub Actions CI/CD workflows
 
-## Prerequisites
+---
+
+## 📋 Prerequisites
 
 - Node.js 18+ (recommended)
-- npm (comes with Node) or pnpm/yarn
-- Docker (if using container mode)
-- GEMINI_API_KEY from your Google / Gemini account
+- npm (or pnpm/yarn)
+- Docker (optional)
+- Google Gemini API Key
 
-## Quick start — local development
+---
 
-1. Clone
+## 🚀 Quick Start
 
-   git clone https://github.com/Bilalabdulkadir/sustainable-it-infrastructure-project.git
-   cd sustainable-it-infrastructure-project
+### 1. Clone the repository
 
-2. Install dependencies
+```bash
+git clone https://github.com/Bilalabdulkadir/sustainable-it-infrastructure-project.git
+cd sustainable-it-infrastructure-project
+```
 
-   npm install
+### 2. Install dependencies
 
-3. Configure environment
+```bash
+npm install
+```
 
-   cp .env.example .env
-   # edit .env and set:
-   # GEMINI_API_KEY="your_gemini_api_key"
-   # APP_URL="http://localhost:5173" (or your app URL)
+### 3. Configure environment variables
 
-4. Start dev server
+Copy the example environment file:
 
-   npm run dev
+```bash
+cp .env.example .env
+```
 
-   - This runs the server in dev mode (script: "dev": "tsx server.ts"). Frontend is served by Vite.
+Edit `.env` and add your values:
 
-## Build & production
+```env
+GEMINI_API_KEY=your_gemini_api_key
+APP_URL=http://localhost:5173
+```
 
-1. Build assets and bundle server
+---
 
-   npm run build
+### 4. Start the development server
 
-   - Runs: vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs
+```bash
+npm run dev
+```
 
+The application will be available at:
+
+- Frontend: http://localhost:5173
+- Backend: http://localhost:8080
+
+---
+
+# 🏗️ Build for Production
+
+Build the frontend and backend:
+
+```bash
+npm run build
+```
+
+Start the production server:
+
+```bash
+npm start
+```
+
+or
+
+```bash
+node dist/server.cjs
+```
+
+---
+
+# 🔑 Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| GEMINI_API_KEY | ✅ | Google Gemini API Key |
+| APP_URL | ✅ | Application URL |
+| PORT | Optional | Defaults to 8080 |
+
+---
+
+# 🐳 Docker
+
+Build the image:
+
+```bash
+docker build -t greenit-hub .
+```
+
+Run the container:
+
+```bash
+docker run \
+-e GEMINI_API_KEY="YOUR_API_KEY" \
+-p 8080:8080 \
+greenit-hub
+```
+
+Or use Docker Compose:
+
+```bash
+docker-compose up --build
+```
+
+---
+
+# ☁️ Cloud Run Deployment
+
+The project includes GitHub Actions workflows for:
+
+- ✅ Continuous Integration
+- ✅ Automated Cloud Run Deployment
+- ✅ Artifact Registry Image Build
+- ✅ Workload Identity Federation (WIF)
+
+## Required GitHub Secrets
+
+- GCP_PROJECT
+- GCP_REGION
+- WIF_PROVIDER
+- GCP_SERVICE_ACCOUNT
+- GEMINI_API_KEY
+
+Production server:
+
+```bash
+node dist/server.cjs
+```
+
+---
+
+# ❤️ Health Check
+
+The application exposes a health endpoint.
+
+```
+GET /health
+```
+
+Example response:
+
+```json
+{
+  "status": "ok",
+  "uptime": 123.45,
+  "timestamp": "2026-08-04T12:30:00.000Z"
+}
+```
+
+Cloud Run requirements:
+
+- Listen on `process.env.PORT`
+- Default to port `8080`
+- Bind to `0.0.0.0`
+
+Example:
+
+```javascript
+const PORT = Number(process.env.PORT) || 8080;
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
+```
+
+---
+
+# 🧪 Testing
+
+Install dependencies:
+
+```bash
+npm ci
+```
+
+Run lint:
+
+```bash
+npm run lint
+```
+
+Run tests:
+
+```bash
+npm test
+```
+
+---
+
+# 📂 Project Structure
+
+```
+.
+├── .github/workflows/
+├── src/
+├── assets/
+├── server.ts
+├── Dockerfile
+├── docker-compose.yml
+├── package.json
+└── README.md
+```
+
+---
+
+# 🛠️ Troubleshooting
+
+### Missing GEMINI_API_KEY
+
+Ensure your `.env` file exists and contains:
+
+```env
+GEMINI_API_KEY=your_api_key
+```
+
+### Port already in use
+
+Use another port:
+
+```bash
+PORT=8080 npm run dev
+```
+
+### Docker
+
+Verify the exposed port matches the application port.
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+# 🔒 Security
+
+- Never commit `.env`
+- Never expose API keys
+- Store production secrets using your cloud provider's secret manager
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+Created and maintained by **Bilal Abdulkadir Muhammed**
 2. Start the built server
 
    npm start
